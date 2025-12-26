@@ -1,0 +1,20 @@
+/bin/
+/tmp/
+*.exe
+*.out
+*.test
+
+# Node / Svelte
+node_modules/
+dist/
+
+# SQLite
+*.db
+
+# Environment
+.env
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
