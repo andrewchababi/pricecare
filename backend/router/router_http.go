@@ -10,4 +10,6 @@ func registerHTTPHandlers(e *echo.Echo) {
 	e.Static("/", "web/static")
 
 	e.POST("/api/calculate", httpHandlers.CalculatePanelPrice)
+
+	e.POST("/api/login", httpHandlers.Login)
 }
