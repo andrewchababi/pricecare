@@ -1,70 +1,48 @@
 package database
 
 import (
-	"database/sql"
-	"errors"
+	"context"
 	"log"
+	"time"
 
 	"github.com/andrewchababi/pricecare/backend/models"
-	"golang.org/x/crypto/bcrypt"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
-func CreateUser(username string, password string) error {
-	hashedPassword, err := bcrypt.GenerateFromPassword(
-		[]byte(password),
-		bcrypt.DefaultCost,
-	)
-	if err != nil {
-		return err
-	}
-
-	query := `
-		INSERT INTO users (username, password)
-		VALUES (?, ?, ?)
-	`
-
-	_, err = database.Exec(
-		query,
-		username,
-		string(hashedPassword),
-	)
-
-	if err != nil {
-		// Optional: handle duplicate username cleanly
-		if sqliteErr, ok := err.(interface{ Error() string }); ok {
-			if sqliteErr.Error() != "" {
-				return errors.New("username already exists")
-			}
-		}
-		return err
-	}
-
-	return nil
-
-}
-
-func GetUserByUsername(username string) models.User {
+func GetUserFromUsername(username string) models.User {
 	var user models.User
-	q := `
-		SELECT username, password 
-		FROM users
-		WHERE username = ?
-		LIMIT 1
-	`
-	row := database.QueryRow(q, username)
 
-	err := row.Scan(
-		&user.Username,
-		&user.HashedPassword,
-	)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	err := usersCollection.FindOne(ctx, bson.M{"username": username}).Decode(&user)
 
 	if err != nil {
-		if err == sql.ErrNoRows {
-			return models.NullUser()
-		}
-		log.Printf("Error fetching user by username: %v", err)
 		return models.NullUser()
 	}
 
 	return user
+}
+
+func GetUserFromId(userId bson.ObjectID) models.User {
+	var user models.User
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	err := usersCollection.FindOne(ctx, bson.M{"_id": userId}).Decode(&user)
+
+	if err != nil {
+		return models.NullUser()
+	}
+
+	return user
+}
+
+func CreateUser(user models.User) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	_, err := usersCollection.InsertOne(ctx, user)
+
+	if err != nil {
+		log.Printf("Failed to insert user into database: %v", err)
+	}
 }
