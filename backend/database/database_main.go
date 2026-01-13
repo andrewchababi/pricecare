@@ -14,10 +14,11 @@ import (
 )
 
 var (
-	client             *mongo.Client
-	database           *mongo.Database
-	usersCollection    *mongo.Collection
-	analysesCollection *mongo.Collection
+	client                *mongo.Client
+	database              *mongo.Database
+	usersCollection       *mongo.Collection
+	analysesCollection    *mongo.Collection
+	loginTokensCollection *mongo.Collection
 )
 
 func init() {
@@ -27,11 +28,13 @@ func init() {
 	database = getDatabase()
 	usersCollection = database.Collection(config.DatabaseCollectionUsers)
 	analysesCollection = database.Collection(config.DatabaseCollectionAnalyses)
+	loginTokensCollection = database.Collection(config.DatabaseCollectionLoginTokens)
 
 	log.Println("Connected to database")
 
 	// TEMP
 	// populateDatabase()
+	// clearCollection(loginTokensCollection)
 }
 
 func getEnvironmentvariable(name string) string {
@@ -43,7 +46,7 @@ func getEnvironmentvariable(name string) string {
 }
 
 func getClient() *mongo.Client {
-	uri := getEnvironmentvariable("MONGODB_URI")
+	uri := getEnvironmentvariable(config.EnvVarDatabaseUrl)
 
 	serverApi := options.ServerAPI(options.ServerAPIVersion1)
 	clientOptions := options.Client().ApplyURI(uri).SetServerAPIOptions(serverApi)
@@ -62,6 +65,6 @@ func getClient() *mongo.Client {
 }
 
 func getDatabase() *mongo.Database {
-	databaseName := getEnvironmentvariable("MONGODB_DB")
+	databaseName := getEnvironmentvariable(config.EnvVarDatabaseName)
 	return client.Database(databaseName)
 }

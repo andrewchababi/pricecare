@@ -5,10 +5,17 @@ import (
 	"path"
 	"strings"
 
+	"github.com/andrewchababi/pricecare/backend/auth"
+	"github.com/andrewchababi/pricecare/backend/models"
 	"github.com/labstack/echo/v4"
 )
 
+const GUEST = models.UserTypeNone
+const STAFF = models.UserTypeStaff
+const ADMIN = models.UserTypeAdminLab
+
 func RegisterRouter(e *echo.Echo) {
+	e.Use(auth.AuthMiddleware)
 	registerErrorHandler(e)
 
 	registerHTTPHandlers(e)

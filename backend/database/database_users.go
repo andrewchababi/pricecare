@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
-func GetUserFromUsername(username string) models.User {
+func GetUserByUsername(username string) models.User {
 	var user models.User
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -23,7 +23,7 @@ func GetUserFromUsername(username string) models.User {
 	return user
 }
 
-func GetUserFromId(userId bson.ObjectID) models.User {
+func GetUserById(userId bson.ObjectID) models.User {
 	var user models.User
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

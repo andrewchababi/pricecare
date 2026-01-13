@@ -1,0 +1,39 @@
+package pages
+
+import "github.com/andrewchababi/pricecare/backend/models"
+
+templ LoginPage() {
+	@baseLayout(models.PageLogin, models.NullUser()) {
+		<main class="main">
+			<div>
+				<div class="title">
+					<div class="title-logo"></div>
+					<div>MedTracker</div>
+				</div>
+			</div>
+			<div class="mid">
+				<form class="box" onsubmit="login(event, this)">
+					<div class="field">
+						<input autocomplete="username" class="input" placeholder="Username" type="text" name="username" id="username" required/>
+						<div class="label" for="username">Username</div>
+					</div>
+					<div class="field">
+						<input autocomplete="current-password" class="input" placeholder="Password" type="password" name="password" id="password" required/>
+						<div class="label" for="password">Password</div>
+					</div>
+					<button class="button" type="submit">
+						<svg class="spinner" aria-hidden="true" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+							<circle class="path" fill="none" cx="60" cy="60" r="34"></circle>
+						</svg>
+						<span class="button-text">Log in</span>
+					</button>
+				</form>
+				<div class="popup">
+					<div class="popup-icon"></div>
+					<div>Invalid username or password</div>
+				</div>
+			</div>
+			<div></div>
+		</main>
+	}
+}

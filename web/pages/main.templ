@@ -1,0 +1,66 @@
+package pages
+
+import "github.com/andrewchababi/pricecare/backend/models"
+
+templ baseLayout(page models.Page, user models.User) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ models.GetPageName(page) }</title>
+			<link rel="icon shortcut" type="image/x-icon" href="/favicon.ico"/>
+			<script src="/scripts/script.js"></script>
+			for _, script := range pagePreScripts[page] {
+				<script src={ script }></script>
+			}
+			<link rel="stylesheet" href="/fonts/roboto/roboto.css"/>
+			<link rel="stylesheet" href="/fonts/poppins/poppins.css"/>
+			<link rel="stylesheet" href="/styles/style.css"/>
+			for _, style := range pageStyles[page] {
+				<link rel="stylesheet" href={ style }/>
+			}
+			for _, prefetch := range pagePrefetchs[page] {
+				<link rel="prefetch" href={ prefetch }/>
+			}
+            <script>globalThis.user = JSON.parse({{ templ.JSONString(user) }});</script>
+		</head>
+		<body>
+			{ children... }
+			for _, script := range pagePostScripts[page] {
+				<script type="module" src={ script }></script>
+			}
+		</body>
+	</html>
+}
+
+templ mainLayout(page models.Page, user models.User) {
+	@baseLayout(page, user) {
+		@topBar()
+		<div class="content">
+			@sidebar(page, user)
+			<main id="main" class="main">
+				{ children... }
+			</main>
+		</div>
+	}
+}
+
+templ topBar() {
+	<header class="header"></header>
+}
+
+templ sidebar(page models.Page, user models.User) {
+	<aside class="sidebar">
+		// for _, linkPage := range models.GetVisiblePages(user.UserType) {
+			// @sidebarLink(page, linkPage)
+		// }
+	</aside>
+}
+
+// templ sidebarLink(currentPage models.Page, linkPage models.Page) {
+// 	<a href={ models.GetPagePath(linkPage) } class={ "sidebar-item" + conditionalClass(currentPage == linkPage, "active") }>
+// 		<div class={ "sidebar-icon icon-" + models.GetPageName(linkPage) }></div>
+// 		{ models.GetPageName(linkPage) }
+// 	</a>
+// }

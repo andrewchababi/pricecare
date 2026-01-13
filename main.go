@@ -7,6 +7,7 @@ import (
 	"github.com/andrewchababi/pricecare/backend/logger"
 	"github.com/andrewchababi/pricecare/backend/router"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -16,6 +17,12 @@ func main() {
 
 	logger.RegisterLogger(e)
 	router.RegisterRouter(e)
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins:     []string{"http://localhost:5173"},
+		AllowCredentials: true, // CRITICAL for cookies
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+	}))
 
 	e.Logger.Fatal(e.Start(config.ServerUrl))
 }
