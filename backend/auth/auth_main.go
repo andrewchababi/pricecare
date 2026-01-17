@@ -27,10 +27,7 @@ func Login(username string, password string) (models.User, string) {
 }
 
 func Logout(loginToken string) {
-	log.Println("Logout auth function called [+]")
 	user := getUserFromLoginToken(loginToken)
-
-	log.Println("user from login token success [+] " + user.Username)
 
 	if user.UserType != models.UserTypeNone {
 		log.Printf("User '%s' logged out", user.Username)

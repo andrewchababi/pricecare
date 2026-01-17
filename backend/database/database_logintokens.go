@@ -84,7 +84,6 @@ func DeleteLoginTokens(loginTokenIds []bson.ObjectID) {
 }
 
 func DeleteLoginToken(loginTokenId bson.ObjectID) {
-	log.Println("database delete login token function called [+]")
 	ctx, cancel := context.WithTimeout(context.Background(), config.DatabaseTimeoutDuration)
 	defer cancel()
 
