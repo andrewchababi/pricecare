@@ -6,6 +6,14 @@ import (
 	"github.com/andrewchababi/pricecare/backend/models"
 )
 
+var pagePrefetches = map[models.Page][]string{
+	models.PageLogin: {
+		"/images/sidebar/settings_filled.svg",
+	},
+	models.PageCalculator: {},
+	models.PageSettings:   {},
+}
+
 var pageStyles = map[models.Page][]string{
 	models.PageLogin:      {"/styles/login.css"},
 	models.PageCalculator: {"/styles/calculator.css"},

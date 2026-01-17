@@ -52,15 +52,15 @@ templ topBar() {
 
 templ sidebar(page models.Page, user models.User) {
 	<aside class="sidebar">
-		// for _, linkPage := range models.GetVisiblePages(user.UserType) {
-			// @sidebarLink(page, linkPage)
-		// }
+		for _, linkPage := range models.GetVisiblePages(user.UserType) {
+			@sidebarLink(page, linkPage)
+		}
 	</aside>
 }
 
-// templ sidebarLink(currentPage models.Page, linkPage models.Page) {
-// 	<a href={ models.GetPagePath(linkPage) } class={ "sidebar-item" + conditionalClass(currentPage == linkPage, "active") }>
-// 		<div class={ "sidebar-icon icon-" + models.GetPageName(linkPage) }></div>
-// 		{ models.GetPageName(linkPage) }
-// 	</a>
-// }
+templ sidebarLink(currentPage models.Page, linkPage models.Page) {
+	<a href={ models.GetPagePath(linkPage) } class={ "sidebar-item" + conditionalClass(currentPage == linkPage, "active") }>
+		<div class={ "sidebar-icon icon-" + models.GetPageName(linkPage) }></div>
+		{ models.GetPageName(linkPage) }
+	</a>
+}

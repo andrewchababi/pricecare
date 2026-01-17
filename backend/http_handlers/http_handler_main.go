@@ -17,7 +17,6 @@ func LoginPage(c echo.Context) error {
 
 func CalculatorPage(c echo.Context) error {
 	user, _ := c.Get("user").(models.User)
-
 	return render(c, pages.CalculatorPage(user))
 }
 

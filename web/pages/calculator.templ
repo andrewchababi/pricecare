@@ -2,12 +2,7 @@ package pages
 
 import "github.com/andrewchababi/pricecare/backend/models"
 
-
 templ CalculatorPage(user models.User) {
-    @baseLayout(models.PageCalculator, user) {
-        <main class="main">
-            <h1>CalculatorPage</h1>
-            <a href="/settings">settings</a>
-        </main>
-    }
+	@mainLayout(models.PageCalculator, user) {
+	}
 }
