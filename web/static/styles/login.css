@@ -1,0 +1,251 @@
+:root {
+    --scale: calc(0.0135 * min(16vw, 9vh));
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    place-items: center center;
+}
+
+.title {
+    font-family: 'poppins';
+    font-weight: 600;
+    letter-spacing: calc(0.3 * var(--scale));
+    font-size: calc(28 * var(--scale));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-logo {
+    margin-top: calc(20 * var(--scale));
+    width: calc(70 * var(--scale));
+    height: calc(70 * var(--scale));
+    background-image: url('../images/login/logo.svg');
+}
+
+.mid {
+    overflow: visible;
+    position: relative;
+    width: calc(380 * var(--scale));
+    height: calc(270 * var(--scale));
+}
+
+.popup {
+    width: calc(380 * var(--scale) - 4px);
+    height: calc(45 * var(--scale));
+    border-radius: calc(12 * var(--scale));
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    font-size: calc(12.5 * var(--scale));
+    background-color: var(--colorSnackbarBg);
+    color: var(--colorSnackbarText);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    transition: top 0.5s ease-in-out;
+}
+
+.show-popup .popup {
+    top: calc(-50 * var(--scale));
+    user-select: text;
+}
+
+.popup-icon {
+    margin-left: calc(15 * var(--scale));
+    margin-right: calc(10 * var(--scale));
+    width: calc(19 * var(--scale));
+    height: calc(19 * var(--scale));
+    opacity: 0.92;
+    background-image: url('../images/snackbar/info.svg');
+}
+
+.box {
+    position: absolute;
+    width: calc(380 * var(--scale));
+    height: calc(270 * var(--scale));
+    padding-top: calc(11 * var(--scale));
+    background: var(--bg-color);
+    border-radius: calc(12 * var(--scale));
+    background-color: var(--colorBgSecondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(20 * var(--scale));
+    z-index: 2;
+}
+
+
+.button {
+    user-select: none;
+    margin-top: calc(10 * var(--scale));
+    width: calc(105 * var(--scale));
+    height: calc(45 * var(--scale));
+    border-radius: calc(999 * var(--scale));
+    font-size: calc(14 * var(--scale));
+    letter-spacing: calc(0.4 * var(--scale));
+    font-weight: 500;
+
+    color: var(--colorTextPrimary);
+    background-color: var(--colorButtonBg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    background-color: var(--colorButtonHover);
+}
+
+.button:hover:active {
+    background-color: var(--colorButtonPressed);
+}
+
+.field {
+    position: relative;
+    height: calc(50 * var(--scale));
+    width: calc(300 * var(--scale));
+}
+
+.input {
+    height: calc(50 * var(--scale));
+    width: calc(300 * var(--scale));
+    border-radius: calc(12 * var(--scale));
+    padding: calc(20 * var(--scale)) calc(20 * var(--scale));
+
+    font-size: calc(14 * var(--scale));
+    font-weight: 400;
+    transition: padding 0.3s ease-in-out;
+
+    box-shadow: 0 0 0 calc(999 * var(--scale)) var(--colorButtonBg) inset !important;
+    background-color: var(--colorButtonBg) !important;
+}
+
+input::placeholder {
+    color: var(--colorTextPlaceholder);
+}
+
+.input:autofill,
+.input:-webkit-autofill,
+.input:not(:placeholder-shown) {
+    padding: calc(28 * var(--scale)) calc(20 * var(--scale)) calc(12 * var(--scale)) calc(20 * var(--scale));
+
+    box-shadow: 0 0 0 calc(999 * var(--scale)) var(--colorButtonBg) inset !important;
+    background-color: var(--colorButtonBg) !important;
+    transition:
+        background-color calc(infinity * 1s) step-end,
+        background-image calc(infinity * 1s) step-end allow-discrete,
+        color calc(infinity * 1s) step-end;
+}
+
+.input:hover,
+.input:focus {
+    box-shadow: 0 0 0 calc(999 * var(--scale)) var(--colorButtonHover) inset !important;
+    background-color: var(--colorButtonHover) !important;
+}
+
+.input:hover:active {
+    box-shadow: 0 0 0 calc(999 * var(--scale)) var(--colorButtonPressed) inset !important;
+    background-color: var(--colorButtonPressed) !important;
+}
+
+.label {
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    top: calc(22 * var(--scale));
+    left: calc(20 * var(--scale));
+    opacity: 0;
+    font-weight: 400;
+    transition:
+        opacity 0.15s ease-in-out,
+        transform 0.30s ease-in-out;
+
+    color: var(--colorTextPlaceholder);
+    font-size: calc(12 * var(--scale));
+}
+
+.input:autofill+.label,
+.input:-webkit-autofill+.label,
+.input:not(:placeholder-shown)+.label {
+    opacity: 1;
+    transform: translateY(calc(-13 * var(--scale)));
+    transition:
+        opacity 0.30s ease-in-out,
+        transform 0.15s ease-in-out;
+}
+
+.spinner {
+    display: none;
+    width: calc(45 * var(--scale));
+    height: calc(45 * var(--scale));
+    transform-origin: center;
+    animation: rotator 1.3s cubic-bezier(0, 0.25, 1, 0.75) infinite;
+    transform: rotate(0deg);
+}
+
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.path {
+    stroke: var(--colorIconSecondary);
+    stroke-width: 8.5;
+    stroke-dasharray: 187;
+    stroke-dashoffset: 165;
+    transform: rotate(0deg);
+    transform-origin: center;
+    animation: dash 1.3s cubic-bezier(0.35, 0.05, 0.65, 0.95) infinite;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 165;
+        transform: rotate(0deg);
+    }
+
+    50% {
+        stroke-dashoffset: 55;
+        transform: rotate(135deg);
+    }
+
+    100% {
+        stroke-dashoffset: 165;
+        transform: rotate(360deg);
+    }
+}
+
+.loading .button {
+    pointer-events: none;
+    cursor: default;
+}
+
+.loading .button-text {
+    display: none;
+}
+
+.loading .spinner {
+    display: block;
+}
+
+.loading .button:hover {
+    background-color: var(--colorButtonBg);
+}
+
+.loading .button:hover:active {
+    background-color: var(--colorButtonBg);
+}

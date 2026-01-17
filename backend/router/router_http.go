@@ -12,6 +12,7 @@ func registerHTTPHandlers(e *echo.Echo) {
 
 	e.GET("/", httpHandlers.CalculatorPage, auth.RedirectMiddleware(STAFF, ADMIN))
 	e.GET("/login", httpHandlers.LoginPage, auth.RedirectMiddleware(GUEST))
+	e.GET("/settings", httpHandlers.SettingsPage, auth.RedirectMiddleware(STAFF, ADMIN))
 
 	e.POST("/api/calculate", httpHandlers.CalculatePanelPrice)
 	e.POST("/api/login", httpHandlers.Login)

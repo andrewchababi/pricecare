@@ -1,0 +1,329 @@
+:root {
+    color-scheme: only dark;
+
+    --colorAccent: hsl(220, 80%, 68%);
+    --colorShadow: hsla(0, 0%, 0%, 0);
+    --colorSurface: hsl(220, 17%, 7%);
+    --colorError: hsl(355, 71%, 68%);
+
+    --colorBorder: hsl(220, 20%, 18%);
+    --colorBorderLight: hsla(220, 20%, 18%, 0.8);
+    --colorBorderThick: hsla(0, 0%, 100%, 0.40);
+    --colorBorderThin: hsla(0, 0%, 100%, 0.18);
+
+    --colorBgPrimary: hsl(220, 17%, 7%);
+    --colorBgSecondary: hsl(220, 17%, 11%);
+    --colorBgTertiary: hsl(220, 17%, 14%);
+    --colorBgQuaternary: hsl(220, 17%, 16%);
+    --colorBgError: hsl(355, 70%, 25%);
+    --colorBgAccentLight: hsl(220, 69%, 62%);
+    --colorBgAccentLightHover: hsl(220, 69%, 65%);
+    --colorBgAccentLightClick: hsl(220, 69%, 68%);
+    --colorBgAccentDark: hsl(220, 46%, 42%);
+
+    --colorOverlayProfile: hsla(220, 17%, 50%, 0.2);
+    
+    --colorInputBg: hsl(220, 17%, 11%);
+    --colorInputHover: hsl(220, 17%, 13%);
+    --colorInputClick: hsl(220, 17%, 16%);
+    --colorInputHighlight: hsl(220, 17%, 18%);
+
+    --colorScrollbarPrimary: hsl(0, 0%, 40%);
+    --colorScrollbarSecondary: hsla(220, 18%, 11%, 0.01);
+    --colorScrollbarHover: hsl(0, 0%, 50%);
+
+    --colorTextPrimary: hsl(0, 0%, 97%);
+    --colorTextSecondary: hsl(0, 0%, 100%, 0.71);
+    --colorTextTertiary: hsla(0, 0%, 100%, 0.59);
+    --colorTextQuaternary: hsla(0, 0%, 100%, 0.45);
+    --colorTextPlaceholder: hsla(0, 0%, 100%, 0.40);
+    --colorTextFaint: hsla(0, 0%, 100%, 0.27);
+    --colorTextAccent: hsl(220, 98%, 77%);
+    --colorTextHighlight: hsl(220, 100%, 20%);
+
+    --colorIconPrimary: hsl(0, 0%, 90%);
+    --colorIconSecondary: hsl(0, 0%, 77%);
+
+    --colorSwitchBg: hsl(220, 22%, 20%);
+    --colorSwitchBorder: hsl(0, 0%, 56%);
+    --colorSwitchActive: hsl(0, 0%, 95%);
+    --colorSwitchAccent: hsl(220, 56%, 54%);
+
+    --colorButtonBg: hsl(220, 22%, 20%);
+    --colorButtonHover: hsl(220, 20%, 23%);
+    --colorButtonPressed: hsl(220, 18%, 27%);
+
+    --colorNavigationBarSelected: hsl(0, 0%, 90%);
+    --colorNavigationBarUnselected: hsl(0, 0%, 60%);
+
+    --colorSnackbarBg: hsl(355, 70%, 25%);
+    --colorSnackbarText: hsl(0, 0%, 100%);
+
+    --colorMapDriver: hsl(220, 100%, 65%);
+
+    --layoutScale: min(max(80px, min(4vw, 5.33vh)), min(10vw, 18vh));
+    --headerHeight: calc(0.54 * var(--layoutScale));
+    --sidebarWidth: calc(2.2 * var(--layoutScale));
+    --mainHeight: calc(100vh - var(--headerHeight));
+    --mainWidth: calc(100vw - var(--sidebarWidth));
+}
+
+* {
+    scrollbar-color: var(--colorScrollbarPrimary) var(--colorScrollbarSecondary);
+    scrollbar-width: thin;
+    margin: 0;
+    margin-block: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding: 0;
+    padding-block: 0;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    vertical-align: top;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-optical-sizing: auto;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--colorScrollbarSecondary);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--colorScrollbarPrimary);
+    border-radius: 6px;
+    border: 3px solid var(--colorScrollbarSecondary);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--colorScrollbarHover);
+}
+
+a,
+a:link,
+a:visited,
+a:focus,
+a:hover,
+a:active,
+button,
+button:hover,
+button:focus,
+button:active,
+input,
+input:hover,
+input:focus,
+input:active,
+textarea,
+textarea:hover,
+textarea:focus,
+textarea:active {
+    color: var(--colorTextPrimary);
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    filter: none;
+    font-family: 'Roboto';
+}
+
+button {
+    cursor: pointer;
+}
+
+input,
+textarea {
+    cursor: text;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+input:autofill:active,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-internal-autofill-selected,
+input:-internal-autofill-selected:hover,
+input:-internal-autofill-selected:focus,
+input:-internal-autofill-selected:active,
+textarea:autofill,
+textarea:autofill:hover,
+textarea:autofill:focus,
+textarea:autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+textarea:-internal-autofill-selected,
+textarea:-internal-autofill-selected:hover,
+textarea:-internal-autofill-selected:focus,
+textarea:-internal-autofill-selected:active {
+    -webkit-appearance: none;
+    appearance: none;
+    color: var(--colorTextPrimary);
+    -webkit-text-fill-color: var(--colorTextPrimary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-color: #00000000 !important;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    filter: none;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    background: var(--colorBgPrimary);
+    font-family: 'Roboto';
+    color: var(--colorTextPrimary);
+}
+
+.header {
+    width: 100vw;
+    height: var(--headerHeight);
+    background-color: var(--colorBgTertiary);
+}
+
+.content {
+    width: 100vw;
+    height: var(--mainHeight);
+    display: flex;
+}
+
+.sidebar {
+    width: var(--sidebarWidth);
+    height: var(--mainHeight);
+    background-color: var(--colorBgSecondary);
+}
+
+.main {
+    width: var(--mainWidth);
+    height: var(--mainHeight);
+    background: var(--colorBgPrimary);
+}
+
+.sidebar-item:link,
+.sidebar-item:visited,
+.sidebar-item:hover,
+.sidebar-item:active,
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    width: var(--sidebarWidth);
+    height: calc(0.26 * var(--sidebarWidth));
+    font-size: calc(0.09 * var(--sidebarWidth));
+    user-select: none;
+    color: var(--colorTextSecondary);
+    background-color: var(--colorBgSecondary);
+}
+
+.sidebar-item:first-child {
+    margin-top: calc(0.04 * var(--sidebarWidth));
+}
+
+.sidebar-icon {
+    display: inline-block;
+    margin-left: calc(0.07 * var(--sidebarWidth));
+    margin-right: calc(0.05 * var(--sidebarWidth));
+    width: calc(0.14 * var(--sidebarWidth));
+    height: calc(0.14 * var(--sidebarWidth));
+    opacity: 0.7;
+}
+
+.sidebar-item:hover,
+.active.sidebar-item {
+    color: var(--colorTextPrimary);
+    background-color: var(--colorBgTertiary);
+}
+
+.sidebar-item:hover .sidebar-icon,
+.active.sidebar-item .sidebar-icon {
+    opacity: 0.85;
+}
+
+.icon-Demands {
+    background-image: url('../images/sidebar/demands_outline.svg');
+}
+
+.icon-Map {
+    background-image: url('../images/sidebar/map_outline.svg');
+}
+
+.icon-History {
+    background-image: url('../images/sidebar/history_outline.svg');
+}
+
+.icon-Analytics {
+    background-image: url('../images/sidebar/analytics_outline.svg');
+}
+
+.icon-Clinics {
+    background-image: url('../images/sidebar/clinics_outline.svg');
+}
+
+.icon-Drivers {
+    background-image: url('../images/sidebar/drivers_outline.svg');
+}
+
+.icon-Messages {
+    background-image: url('../images/sidebar/messages_outline.svg');
+}
+
+.icon-Settings {
+    background-image: url('../images/sidebar/settings_outline.svg');
+}
+
+.active .icon-Demands {
+    background-image: url('../images/sidebar/demands_filled.svg');
+}
+
+.active .icon-Map {
+    background-image: url('../images/sidebar/map_filled.svg');
+}
+
+.active .icon-History {
+    background-image: url('../images/sidebar/history_filled.svg');
+}
+
+.active .icon-Analytics {
+    background-image: url('../images/sidebar/analytics_filled.svg');
+}
+
+.active .icon-Clinics {
+    background-image: url('../images/sidebar/clinics_filled.svg');
+}
+
+.active .icon-Drivers {
+    background-image: url('../images/sidebar/drivers_filled.svg');
+}
+
+.active .icon-Messages {
+    background-image: url('../images/sidebar/messages_filled.svg');
+}
+
+.active .icon-Settings {
+    background-image: url('../images/sidebar/settings_filled.svg');
+}
+
+.no-select {
+    user-select: none;
+}

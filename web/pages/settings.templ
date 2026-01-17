@@ -1,0 +1,17 @@
+package pages 
+
+import "github.com/andrewchababi/pricecare/backend/models"
+
+templ SettingsPage(user models.User) {
+	@mainLayout(models.PageSettings, user) {
+		<div class="profile-bar">
+			<div class="profile-circle">
+				<div class="profile-icon"></div>
+			</div>
+			<div class="profile-right">
+                <div class="profile-role">{ models.GetUserTypePrettyString(user.UserType) }</div>
+            </div>
+		</div>
+		<button class="logout-button" onclick="window.logout()">Log out</button>
+	}
+}

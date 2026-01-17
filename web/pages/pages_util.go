@@ -8,23 +8,27 @@ import (
 
 var pageStyles = map[models.Page][]string{
 	models.PageLogin:      {"/styles/login.css"},
-	models.PageCalculator: {"/styles/login.css"},
+	models.PageCalculator: {"/styles/calculator.css"},
+	models.PageSettings:   {"/styles/settings.css"},
 }
 
 var pagePreScripts = map[models.Page][]string{
 	models.PageLogin:      {},
 	models.PageCalculator: {},
+	models.PageSettings:   {},
 	// models.PageHistory:   {"/scripts/websocket.js", "https://unpkg.com/htmx.org@1.9.6"},
 }
 
 var pagePostScripts = map[models.Page][]string{
 	models.PageLogin:      {"/scripts/login.js"},
-	models.PageCalculator: {"/scripts/Calculator.js"},
+	models.PageCalculator: {"/scripts/calculator.js"},
+	models.PageSettings:   {"/scripts/settings.js"},
 }
 
 var pagePrefetchs = map[models.Page][]string{
 	models.PageLogin:      {},
 	models.PageCalculator: {},
+	models.PageSettings:   {},
 }
 
 func conditionalClass(condition bool, result string) string {

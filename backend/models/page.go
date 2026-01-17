@@ -5,6 +5,7 @@ type Page int
 const (
 	PageLogin Page = iota
 	PageCalculator
+	PageSettings
 )
 
 var PageName = map[Page]string{
