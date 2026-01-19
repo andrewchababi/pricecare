@@ -24,6 +24,15 @@ main {
     cursor: pointer;
 }
 
+.analysis-card {
+	transition: background-color 0.1s ease;
+}
+
+.analysis-card:hover {
+	background-color: var(--colorBgTertiary);
+}
+
+
 .analyses-list hr:last-child {
     display: none;
 }
