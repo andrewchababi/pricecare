@@ -1,3 +1,191 @@
-.main {
-    color: red;
+main {
+    display: flex;
+    gap: 20px;
 }
+
+.analyses-list {
+    flex: 1;
+    margin-top: 1rem;
+    max-width: 400px;
+    overflow-y: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--colorSwitchBg);
+}
+
+.analysis-card {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 90%;
+    border-radius: 10px;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    cursor: pointer;
+}
+
+.analyses-list hr:last-child {
+    display: none;
+}
+
+
+.analyses-list hr {
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid var(--colorSwitchBg);
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+.calculation-column {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	gap: 12rem; 
+	padding: 2rem;
+	width: 100%;
+    align-items: center;
+}
+
+.analysis-tag-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	width: 100%;
+    max-width: 1100px;
+    margin-top: 2rem;
+}
+
+.analysis-tag-list {
+    display: flex;
+	flex: 1;
+	min-height: 60px;
+	padding: 12px;
+	border-radius: 8px;
+    border: 1px solid var(--colorBorder);
+}
+
+
+.tag-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.calculate-panel-button {
+	flex: 0 0 auto;
+	width: 60px;
+	height: 60px;
+	font-size: 2rem;
+	font-weight: bold;
+	background: var(--colorBgAccentDark);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.panel-price-header {
+    width: 100%;
+    max-width: 500px;
+}
+
+.panel-price-box {
+	width: 100%;
+    max-width: 1100px;
+	padding: 1rem 2rem;
+	border-radius: 8px;
+	background: var(--colorBgAccentDark);
+	color: var(--colorTextPrimary);
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;
+	row-gap: 10px;
+	column-gap: 16px;
+}
+
+.panel-price-title {
+	grid-column: 1;
+	grid-row: 1;
+
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.panel-price-value {
+	grid-column: 2;
+	grid-row: 1;
+
+	font-size: 2rem;
+	font-weight: 750;
+	white-space: nowrap;
+	text-align: center;
+	justify-self: center;
+}
+
+.panel-price-summary-label {
+	grid-column: 1;
+	grid-row: 2;
+
+	font-size: 1rem;
+	font-weight: 600;
+	opacity: 0.75;
+}
+
+#panelTestCount {
+	grid-column: 2;
+	grid-row: 2;
+
+	font-size: 0.85rem;
+	opacity: 0.75;
+	text-align: center;
+	justify-self: center;
+}
+
+/* temporary */
+
+.analysis-tag {
+	display: inline-flex;
+	align-items: center;
+
+	border-radius: 999px;
+	background: var(--colorBgQuaternary);
+	border: 1px solid var(--colorBorder);
+
+	font-size: 1rem;
+	font-weight: 600;
+	overflow: hidden; /* ensures divider stays clean */
+}
+
+.analysis-name {
+	padding: 4px 10px;
+	white-space: nowrap;
+}
+
+/* right-side X section */
+.analysis-remove {
+	padding: 4px 8px;
+
+	border: none;
+	border-left: 1px solid var(--colorBorder) !important;
+	background: transparent;
+
+	cursor: pointer;
+	font-size: 0.85rem;
+	line-height: 1;
+	color: var(--colorTextSecondary);
+}
+
+
+/*  ^
+    | 
+ temporary */

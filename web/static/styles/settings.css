@@ -50,5 +50,5 @@
     width: 55%;
     height: 55%;
     opacity: 0.5;
-    background-image: url('../images/messages/person.svg');
+    background-image: url('/images/messages/person.svg');
 }

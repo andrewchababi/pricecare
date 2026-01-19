@@ -8,9 +8,10 @@ import (
 
 var pagePrefetches = map[models.Page][]string{
 	models.PageLogin: {
+		"/images/calculator/calculator_filled.png",
 		"/images/sidebar/settings_filled.svg",
 	},
-	models.PageCalculator: {},
+	models.PageCalculator: {"/images/calculator/calculator_filled.png"},
 	models.PageSettings:   {},
 }
 

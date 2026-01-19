@@ -292,6 +292,13 @@ body {
     background-image: url('../images/sidebar/settings_outline.svg');
 }
 
+.icon-Calculator {
+    background-image: url('/images/calculator/calculator_filled.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+}
+
 .active .icon-Demands {
     background-image: url('../images/sidebar/demands_filled.svg');
 }
