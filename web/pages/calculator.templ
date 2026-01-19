@@ -31,9 +31,10 @@ templ AnalysisCard(analysis models.Analysis) {
 templ AnalysisTag() {
 	<div class="analysis-tag">
 		<span class="analysis-name"></span>
-		<button class="analysis-remove" 
-		aria-label="Remove"
-		onclick="removeAnalysis(this)"
+		<button
+			class="analysis-remove"
+			aria-label="Remove"
+			onclick="removeAnalysis(this)"
 		>
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
 				<line x1="5" y1="5" x2="15" y2="15"></line>
@@ -46,16 +47,22 @@ templ AnalysisTag() {
 templ AnalysisTagList() {
 	<div class="analysis-tag-header">
 		<div class="analysis-tag-list" role="region" aria-label="Selected analyses">
-			<li class="tag-list">
-			</li>
+			<ul class="tag-list"></ul>
 		</div>
-		<button class="calculate-panel-button" 
-		aria-label="Calculate panel"
-		onclick="calculatePanel()"
+		<button
+			class="calculate-panel-button"
+			aria-label="Calculate panel"
+			onclick="calculatePanel()"
 		>
 			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
 				<line x1="10" y1="5" x2="10" y2="15"></line>
 				<line x1="5" y1="10" x2="15" y2="10"></line>
+			</svg>
+		</button>
+		<button class="clear-panel-button" aria-label="Clear panel" onclick="clearPanel()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+				<line x1="5" y1="5" x2="15" y2="15"></line>
+				<line x1="15" y1="5" x2="5" y2="15"></line>
 			</svg>
 		</button>
 	</div>

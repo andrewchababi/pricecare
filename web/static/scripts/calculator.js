@@ -29,7 +29,7 @@ function addToSelectedTagList(cardEl) {
   removeBtn.addEventListener("click", () => removeAnalysis(removeBtn));
 
   tagList.appendChild(tagEl);
-  console.log(selectedAnalyses)
+  console.log(selectedAnalyses);
 
   updateSelectedCount();
 }
@@ -62,11 +62,11 @@ async function calculatePanel() {
     const res = await fetch("/api/calculate", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        testIds: testIds
-      })
+        testIds: testIds,
+      }),
     });
 
     if (!res.ok) {
@@ -81,7 +81,6 @@ async function calculatePanel() {
     if (priceEl && typeof data.total_price === "number") {
       priceEl.textContent = `$${data.total_price.toFixed(2)}`;
     }
-
   } catch (err) {
     console.error("Network error calculating panel:", err);
   }
@@ -97,8 +96,27 @@ function removeAnalysis(btnEl) {
   updateSelectedCount();
 }
 
+function clearPanel() {
+  // Clear state
+  selectedAnalyses.clear();
+
+  // Remove all tags from UI
+  const tagList = document.querySelector(".tag-list");
+  if (tagList) {
+    tagList.innerHTML = "";
+  }
+
+  // Reset price display
+  const priceEl = document.getElementById("panelPrice");
+  priceEl.textContent = "$0.00";
+
+  // Reset count
+  updateSelectedCount();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   window.addToSelectedTagList = addToSelectedTagList;
   window.calculatePanel = calculatePanel;
   window.removeAnalysis = removeAnalysis;
+  window.clearPanel = clearPanel;
 });

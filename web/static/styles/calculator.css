@@ -103,6 +103,22 @@ h2 {
 	justify-content: center;
 }
 
+.clear-panel-button {
+	flex: 0 0 auto;
+	width: 60px;
+	height: 60px;
+	font-size: 2rem;
+	font-weight: bold;
+	background: var(--colorBgError);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .panel-price-header {
     width: 100%;
     max-width: 500px;
