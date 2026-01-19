@@ -1,22 +1,17 @@
 const selectedAnalyses = new Map(); // id -> name
 
 function addToSelectedTagList(cardEl) {
-  if (!cardEl) return;
-
   const id = cardEl.dataset.analysisId;
   const name = cardEl.dataset.analysisName || id;
 
-  if (!id) return;
-
-  // Prevent duplicates
-  if (selectedAnalyses.has(id)) return;
-
+  if (selectedAnalyses.has(id)) {
+    console.log("analysis has already been added");
+    return;
+  }
   selectedAnalyses.set(id, name);
 
   const tagList = document.querySelector(".tag-list");
-  if (!tagList) return;
 
-  // Create tag element
   const tagEl = document.createElement("li");
   tagEl.className = "analysis-tag";
   tagEl.dataset.analysisId = id;
@@ -30,16 +25,17 @@ function addToSelectedTagList(cardEl) {
       </svg>
     </button>
   `;
+  const removeBtn = tagEl.querySelector(".analysis-remove");
+  removeBtn.addEventListener("click", () => removeAnalysis(removeBtn));
 
   tagList.appendChild(tagEl);
+  console.log(selectedAnalyses)
 
-  // Update summary count
   updateSelectedCount();
 }
 
 function updateSelectedCount() {
   const countEl = document.getElementById("panelTestCount");
-  if (!countEl) return;
 
   const n = selectedAnalyses.size;
   countEl.textContent = `${n} analyses selected`;
@@ -54,23 +50,55 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
-// Event delegation: remove tags even if they were added later
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".analysis-remove");
-  if (!btn) return;
+async function calculatePanel() {
+  const testIds = Array.from(selectedAnalyses.keys());
 
-  const tag = btn.closest(".analysis-tag");
-  if (!tag) return;
+  if (testIds.length === 0) {
+    console.warn("No analyses selected");
+    return;
+  }
 
-  const id = tag.dataset.analysisId;
-  if (id) selectedAnalyses.delete(id);
+  try {
+    const res = await fetch("/api/calculate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        testIds: testIds
+      })
+    });
 
-  tag.remove();
+    if (!res.ok) {
+      const err = await res.json();
+      console.error("Calculation error:", err);
+      return;
+    }
+
+    const data = await res.json();
+
+    const priceEl = document.getElementById("panelPrice");
+    if (priceEl && typeof data.total_price === "number") {
+      priceEl.textContent = `$${data.total_price.toFixed(2)}`;
+    }
+
+  } catch (err) {
+    console.error("Network error calculating panel:", err);
+  }
+}
+
+function removeAnalysis(btnEl) {
+  const tagEl = btnEl.parentElement;
+
+  const id = tagEl.dataset.analysisId;
+
+  selectedAnalyses.delete(id);
+  tagEl.remove();
   updateSelectedCount();
-});
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    window.addToSelectedTagList = addToSelectedTagList;
-    window.escapeHtml = escapeHtml;
+  window.addToSelectedTagList = addToSelectedTagList;
+  window.calculatePanel = calculatePanel;
+  window.removeAnalysis = removeAnalysis;
 });
-

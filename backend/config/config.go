@@ -3,7 +3,7 @@ package config
 import "time"
 
 const (
-	ServerUrl = "0.0.0.0:3001" // Remember to change this
+	ServerUrl = "0.0.0.0:3000" // Remember to change this
 
 	DatabaseCollectionUsers       = "users"
 	DatabaseCollectionAnalyses    = "analyses"

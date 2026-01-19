@@ -47,6 +47,7 @@ h2 {
 	padding: 2rem;
 	width: 100%;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .analysis-tag-header {
@@ -101,6 +102,7 @@ h2 {
 .panel-price-box {
 	width: 100%;
     max-width: 1100px;
+    min-height: 8rem;
 	padding: 1rem 2rem;
 	border-radius: 8px;
 	background: var(--colorBgAccentDark);

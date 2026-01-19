@@ -33,7 +33,7 @@ templ AnalysisTag() {
 		<span class="analysis-name"></span>
 		<button class="analysis-remove" 
 		aria-label="Remove"
-		onclick="calculatePanel(this)"
+		onclick="removeAnalysis(this)"
 		>
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
 				<line x1="5" y1="5" x2="15" y2="15"></line>
@@ -49,7 +49,10 @@ templ AnalysisTagList() {
 			<li class="tag-list">
 			</li>
 		</div>
-		<button class="calculate-panel-button" aria-label="Calculate panel">
+		<button class="calculate-panel-button" 
+		aria-label="Calculate panel"
+		onclick="calculatePanel()"
+		>
 			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
 				<line x1="10" y1="5" x2="10" y2="15"></line>
 				<line x1="5" y1="10" x2="15" y2="10"></line>
